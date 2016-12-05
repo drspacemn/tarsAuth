@@ -74,10 +74,11 @@ app.post('/token', function(req,res,next){
        
         var state = alexaUrl.state;
         var client_id = 'alexa-skill';
+        var redirect_uri = alexaUrl.redirect_uri;
       // }
   //   }
   // }
-  res.redirect("https://pitangui.amazon.com/api/skill/link/M38JU6PT197KHZ&state=" + state + "&code=" + token)
+  res.redirect(redirect_uri + "&state=" + state + "&code=" + token)
 
 });
 
