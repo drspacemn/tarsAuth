@@ -11,7 +11,7 @@ var jwt         = require('jsonwebtoken');
 var config      = require('./config');
 var User        = require('./models/user');
 var url         = require('url');
-
+var querystring = require('querystring');
 
 var app = express();
 
@@ -64,19 +64,20 @@ app.post('/token', function(req,res,next){
   //     if(user.password !== req.body.password){
   //       res.send('Authorization failed due to wrong password');
   //     }else {y
-        var obj = {};
-        obj.email = req.body.email;
-        obj.password = req.body.password;
+        var obj           = {};
+        obj.email         = req.body.email;
+        obj.password      =  req.body.password;
         console.log("obj ", obj)
 
-        var token = jwt.sign(obj, app.get('superSecret'), {
+        var token         = jwt.sign(obj, app.get('superSecret'), {
           expiresIn: '4h'
         });
-       
-        var state = alexaUrl.state;
-        var client_id = 'alexa-skill';
-        var redirect_uri = alexaUrl.redirect_uri;
-        console.log("alexaUrl ", alexaUrl);
+        var alexaObject = querystring.parse(alexaUrl);
+
+        var state         = alexaObject.state;
+        var client_id     = alexaObject.client_skill;
+        var redirect_uri  = alexaObject.redirect_uri;
+        console.log("alexaObject ", alexaObject);
       // }
   //   }
   // }
