@@ -40,7 +40,7 @@ app.get('/privacy', function(req, res, next){
 /* GET home page. */
 app.get('/', function(req, res, next) {
   res.render('index', { title: 'Close Sesame'});
-  alexaUrl = req.url; 
+  alexaUrl = url.parse(req.url); 
 });
 
 app.post('/token', function(req,res,next){
@@ -67,6 +67,7 @@ app.post('/token', function(req,res,next){
         var obj = {};
         obj.email = req.body.email;
         obj.password = req.body.password;
+        console.log("obj ", obj)
 
         var token = jwt.sign(obj, app.get('superSecret'), {
           expiresIn: '4h'
@@ -75,6 +76,7 @@ app.post('/token', function(req,res,next){
         var state = alexaUrl.state;
         var client_id = 'alexa-skill';
         var redirect_uri = alexaUrl.redirect_uri;
+        console.log("alexaUrl ", alexaUrl);
       // }
   //   }
   // }
