@@ -77,7 +77,7 @@ app.post('/token', function(req,res,next){
       // }
   //   }
   // }
-  res.redirect(`https://pitangui.amazon.com/api/skill/link/M38JU6PT197KHZ&state=${state}&code=${token}`)
+  res.redirect("https://pitangui.amazon.com/api/skill/link/M38JU6PT197KHZ&state=" + state + "&code=" + token)
 
 });
 
