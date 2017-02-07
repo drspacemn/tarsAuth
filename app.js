@@ -14,7 +14,7 @@ var url         = require('url');
 var querystring = require('querystring');
 
 var app = express();
-
+console.log("this is master yall");
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
